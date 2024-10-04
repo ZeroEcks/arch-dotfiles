@@ -1,6 +1,5 @@
 name: Shell Formatting
 on:
-  push:
   pull_request:
 jobs:
   shfmt:
