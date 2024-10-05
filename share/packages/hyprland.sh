@@ -16,6 +16,5 @@ packagesAUR=(
     "hyprshade"
     "waypaper"
     "grimblast-git"
-    # "bun-bin" confirm if needed
     "aylurs-gtk-shell"
 )

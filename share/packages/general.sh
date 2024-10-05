@@ -1,5 +1,6 @@
 packagesPacman=(
     "pacman-contrib"
+    "rsync"
     "sed"
     "vim"
     "bluez"

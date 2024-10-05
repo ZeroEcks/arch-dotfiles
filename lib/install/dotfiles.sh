@@ -107,7 +107,7 @@ source "$install_directory"/dotfiles/apps.sh
 source "$install_directory"/dotfiles/cleanup.sh
 
 # -----------------------------------------------------
-# Execute post.sh if exists
+# Execute post.sh
 # -----------------------------------------------------
 source "$install_directory"/dotfiles/post.sh
 
