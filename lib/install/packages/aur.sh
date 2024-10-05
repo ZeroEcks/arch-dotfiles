@@ -8,7 +8,7 @@ _selectAURHelper() {
     echo ":: Please select your preferred AUR Helper"
     echo
     aur_helper=$(gum choose "yay" "paru" "pikaur" "trizen" "aurman" "pacaur" "pakku" "pacman")
-    if [ -z $aur_helper ]; then
+    if [ -z "$aur_helper" ]; then
         _selectAURHelper
     fi
     if command -v "$aur_helper" &>/dev/null; then
@@ -16,15 +16,15 @@ _selectAURHelper() {
         return 0
     else
         echo ":: Installing $aur_helper..."
-        cd $HOME
+        cd "$HOME" || exit
         if [ -d "$HOME/$aur_helper" ]; then
             rm -rf "$HOME/$aur_helper"
         fi
-        git clone "https://aur.archlinux.org/$aur_helper.git" ~/$aur_helper || {
+        git clone "https://aur.archlinux.org/$aur_helper.git" ~/"$aur_helper" || {
             echo ":: Failed to clone $aur_helper."
             return 1
         }
-        cd $HOME/"$aur_helper" || {
+        cd "$HOME"/"$aur_helper" || {
             echo ":: Failed to change directory to $aur_helper."
             return 1
         }
@@ -32,7 +32,7 @@ _selectAURHelper() {
             echo ":: Installation of $aur_helper failed."
             return 1
         }
-        cd $HOME
+        cd "$HOME" || exit
         rm -rf "$aur_helper"
         echo ":: $aur_helper installed successfully."
     fi

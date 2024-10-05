@@ -17,7 +17,7 @@ if [ ! -d ~/wallpaper ]; then
         if [ ! -d ~/.local/share/backgrounds/ ]; then
             mkdir ~/.local/share/backgrounds
         fi
-        rsync -a -I --exclude-from=$install_directory/includes/excludes.txt ~/Downloads/wallpaper/. ~/.local/share/backgrounds/
+        rsync -a -I --exclude-from="$install_directory"/includes/excludes.txt ~/Downloads/wallpaper/. ~/.local/share/backgrounds/
         echo "Wallpapers from the repository installed successfully."
     elif [ $? -eq 130 ]; then
         exit 130
@@ -27,7 +27,7 @@ if [ ! -d ~/wallpaper ]; then
         else
             mkdir ~/.local/share/backgrounds
         fi
-        cp $wallpaper_directory/* ~/.local/share/backgrounds
+        cp "$wallpaper_directory"/* ~/.local/share/backgrounds
         echo "Default wallpapers installed successfully."
     fi
 else
@@ -44,13 +44,13 @@ cache_file="$HOME/.config/ml4w/cache/current_wallpaper"
 rasi_file="$HOME/.config/ml4w/cache/current_wallpaper.rasi"
 
 # Create cache file if not exists
-if [ ! -f $cache_file ]; then
-    touch $cache_file
+if [ ! -f "$cache_file" ]; then
+    touch "$cache_file"
     echo "$HOME/.local/share/backgrounds/default.jpg" >"$cache_file"
 fi
 
 # Create rasi file if not exists
-if [ ! -f $rasi_file ]; then
-    touch $rasi_file
+if [ ! -f "$rasi_file" ]; then
+    touch "$rasi_file"
     echo "* { current-image: url(\"$HOME/.local/share/backgrounds/default.jpg\", height); }" >"$rasi_file"
 fi
