@@ -13,20 +13,20 @@
 dir=$(dirname "$(realpath $0)")
 
 if [[ $dir == "/usr/bin" ]]; then
-    # AUR
-    install_mode="aur"
-    package_name="ml4w-hyprland"
-    base_directory="/usr"
-    bin_directory="$base_directory/bin/$package_name"
-    share_directory="$base_directory/share/$package_name"
-    lib_directory="$base_directory/lib/$package_name"
+	# AUR
+	install_mode="aur"
+	package_name="ml4w-hyprland"
+	base_directory="/usr"
+	bin_directory="$base_directory/bin/$package_name"
+	share_directory="$base_directory/share/$package_name"
+	lib_directory="$base_directory/lib/$package_name"
 else
-    # Filesystem
-    install_mode="filesystem"
-    base_directory="$(dirname $(pwd))"
-    bin_directory="$base_directory/bin"
-    share_directory="$base_directory/share"
-    lib_directory="$base_directory/lib"
+	# Filesystem
+	install_mode="filesystem"
+	base_directory="$(dirname $(pwd))"
+	bin_directory="$base_directory/bin"
+	share_directory="$base_directory/share"
+	lib_directory="$base_directory/lib"
 fi
 
 install_directory="$lib_directory/install"
@@ -58,57 +58,57 @@ source $install_directory/includes/library.sh
 # Run full installation
 # -----------------------------------------------------
 _run_fullinstall() {
-    source $install_directory/header.sh
-    source $install_directory/packages.sh
-    source $install_directory/dotfiles.sh
+	source $install_directory/header.sh
+	source $install_directory/packages.sh
+	source $install_directory/dotfiles.sh
 }
 
 # -----------------------------------------------------
 # Check for update
 # -----------------------------------------------------
 _check_update() {
-    if [ -f ~/.config/ml4w/settings/dotfiles-folder.sh ]; then
-        echo "true"
-    else
-        echo "false"
-    fi
+	if [ -f ~/.config/ml4w/settings/dotfiles-folder.sh ]; then
+		echo "true"
+	else
+		echo "false"
+	fi
 }
 
 # -----------------------------------------------------
 # Run packages installation
 # -----------------------------------------------------
 _run_packages() {
-    source $install_directory/header.sh
-    source $install_directory/packages.sh
+	source $install_directory/header.sh
+	source $install_directory/packages.sh
 }
 
 # -----------------------------------------------------
 # Run dotfiles installation
 # -----------------------------------------------------
 _run_dotfiles() {
-    source $install_directory/header.sh
-    source $install_directory/dotfiles.sh
+	source $install_directory/header.sh
+	source $install_directory/dotfiles.sh
 }
 
 # -----------------------------------------------------
 # Run unstaller
 # -----------------------------------------------------
 _run_uninstall() {
-    source $install_directory/uninstall.sh
+	source $install_directory/uninstall.sh
 }
 
 # -----------------------------------------------------
 # Run update
 # -----------------------------------------------------
 _run_update() {
-    source $install_directory/update.sh
+	source $install_directory/update.sh
 }
 
 # -----------------------------------------------------
 # Activate existing dotfiles installation
 # -----------------------------------------------------
 _run_activate() {
-    source $install_directory/activate.sh
+	source $install_directory/activate.sh
 }
 
 # -----------------------------------------------------
@@ -119,47 +119,47 @@ _run_activate() {
 # Get script parameter
 # -----------------------------------------------------
 if [[ -z $1 ]]; then
-    _run_fullinstall
+	_run_fullinstall
 else
-    while getopts m:vh flag; do
-        case "${flag}" in
-        m)
-            case ${OPTARG} in
-            full)
-                _run_fullinstall
-                ;;
-            packages)
-                _run_packages
-                ;;
-            dotfiles)
-                _run_dotfiles
-                ;;
-            uninstall)
-                _run_uninstall
-                ;;
-            update)
-                _run_update
-                ;;
-            activate)
-                _run_activate
-                ;;
-            esac
-            ;;
-        v)
-            echo ":: ML4W Dotfiles for Hyprland Version $version"
-            ;;
-        h)
-            echo ":: ML4W Dotfiles for Hyprland Version $version"
-            echo
-            echo "-m full: Run full installation"
-            echo "-m packages: Run installation of packages only"
-            echo "-m dotfiles: Run the setup of the dotfiles only"
-            echo "-m update: Check for new updates"
-            echo "-m unstall: Will uninstall the dotfiles"
-            echo "-m activate: Activate an existing dotfiles folder"
-            echo
-            echo "-v: Current version of the ML4W Dotfiles for Hyprland"
-            ;;
-        esac
-    done
+	while getopts m:vh flag; do
+		case "${flag}" in
+		m)
+			case ${OPTARG} in
+			full)
+				_run_fullinstall
+				;;
+			packages)
+				_run_packages
+				;;
+			dotfiles)
+				_run_dotfiles
+				;;
+			uninstall)
+				_run_uninstall
+				;;
+			update)
+				_run_update
+				;;
+			activate)
+				_run_activate
+				;;
+			esac
+			;;
+		v)
+			echo ":: ML4W Dotfiles for Hyprland Version $version"
+			;;
+		h)
+			echo ":: ML4W Dotfiles for Hyprland Version $version"
+			echo
+			echo "-m full: Run full installation"
+			echo "-m packages: Run installation of packages only"
+			echo "-m dotfiles: Run the setup of the dotfiles only"
+			echo "-m update: Check for new updates"
+			echo "-m unstall: Will uninstall the dotfiles"
+			echo "-m activate: Activate an existing dotfiles folder"
+			echo
+			echo "-v: Current version of the ML4W Dotfiles for Hyprland"
+			;;
+		esac
+	done
 fi
